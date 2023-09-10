@@ -1,7 +1,5 @@
 # react-native-socket.io
-Certainly! Here's a README.md for your Expo React Native project:
 
-Expo React Native WebSocket Test
 This project is designed to test the WebSocket connection with Laravel Echo using laravel-echo and socket.io-client.
 
 Features
