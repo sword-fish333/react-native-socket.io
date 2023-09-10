@@ -3,13 +3,20 @@ import {StyleSheet, Image, View, Text, Button, ScrollView} from 'react-native';
 import Echo from 'laravel-echo';
 import io from 'socket.io-client';
 import {useEffect, useState} from "react";
+import axios from "axios";
 
 // Assuming your Laravel app is hosted on 'cryptoexcellence.club'
 const host = process.env.EXPO_PUBLIC_HOST
 const port =  process.env.EXPO_PUBLIC_PORT
 const protocol = process.env.EXPO_PUBLIC_PROTOCOL
 const socket = io(`${protocol}://${host}:${port}`);
+socket.on('connect', () => {
+    console.log('Socket connected to server');
+});
 
+socket.on('connect_error', (error) => {
+    console.error('Socket Connection error:', error);
+});
 export default function App() {
     const [trading_signal,setTradingSignal]=useState(null)
     useEffect(() => {
@@ -41,12 +48,17 @@ export default function App() {
             echo.disconnect();
         };
     }, []);
-    const sendSignal=()=>{
+    const sendSignal=async()=>{
     console.log('sendSignal')
-        socket.emit('trading-signal', {
-            event: 'TradingSignalEvent',
-            data: 'Your trading signal data here'
-        });
+        try {
+            const res=await axios.post(`https://${host}/api/client-message`,{data:'test hello , message from client side app'});
+console.log('res',res.data)
+        }catch (e){
+        console.log(' sendSignal error ',e)
+        }
+        // socket.emit('client-message', {
+        //     data: 'Your trading signal data here'
+        // });
     }
     return (
         <View style={styles.container}>
