@@ -10,3 +10,9 @@ Uses downgraded versions of socket.io and socket.io-client for compatibility:
 Prerequisites
 Ensure you have Node.js and Yarn installed on your machine.
 Expo CLI: Install it globally using npm install -g expo-cli if you haven't already.
+
+Install the dependencies using Yarn:
+yarn install
+
+To start the project, use the following command:
+npx expo start
