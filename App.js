@@ -31,30 +31,9 @@ export default function App() {
             console.log('Successfully connected.');
         });
 
-
-        echo.connector.socket.on('error', (error) => {
-            console.error('Error:', error);
-        });
-
         echo.connector.socket.on('connect_error', (error) => {
-
-            // Print the error message
             console.error('Error Message:', error.message);
-
-
         });
-        socket.on('connect', () => {
-            console.log('Connected to server');
-        });
-
-        socket.on('disconnect', () => {
-            console.log('Disconnected from server');
-        });
-
-        socket.on('error', (error) => {
-            console.error('Error:', error);
-        });
-
         // Cleanup function
         return () => {
             console.log('stopListening')
@@ -72,15 +51,15 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Image
-                style={{width:100, height:100,marginTop:70,resizeMode:'contain'}}
+                style={{width:100, height:100,marginTop:50,resizeMode:'contain'}}
                 source={require('./assets/images/logo_socket_io.png')}
             />
-            {trading_signal && <ScrollView style={{maxHeight:'70%',marginTop:30}}><Text style={{
+            {trading_signal && <ScrollView style={{maxHeight:'70%',marginTop:10}}><Text style={{
                 fontFamily: 'monospace', // This will give a more "code-like" appearance
                 fontSize: 14,}}>
                 {JSON.stringify(trading_signal, null, 2)}
             </Text></ScrollView>}
-            <View  style={{width:'80%',marginTop:30,marginBottom:30}}>
+            <View  style={{position:'absolute',bottom:0,width:'80%',marginTop:30,marginBottom:30}}>
             <Button title={'send signal'} onPress={sendSignal}/>
             </View>
           <StatusBar style="auto"/>
@@ -94,5 +73,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'flex-start',
+        paddingBottom:30
     },
 });
