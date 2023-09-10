@@ -4,11 +4,12 @@ import Echo from 'laravel-echo';
 import io from 'socket.io-client';
 import {useEffect} from "react";
 
-const socket = io(`${protocol}://${host}:${port}`);
 // Assuming your Laravel app is hosted on 'cryptoexcellence.club'
-const host = 'cryptoexcellence.club';
-const port = 6001;
-const protocol = 'wss'; // 'wss' for SSL
+const host = process.env.EXPO_PUBLIC_HOST
+const port =  process.env.EXPO_PUBLIC_PORT
+const protocol = process.env.EXPO_PUBLIC_PROTOCOL
+const socket = io(`${protocol}://${host}:${port}`);
+console.log('protocol',protocol,host)
 
 export default function App() {
     useEffect(() => {
