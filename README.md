@@ -1,1 +1,1 @@
-# react-native-sockets
+# react-native-socket.io
